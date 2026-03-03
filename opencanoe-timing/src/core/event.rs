@@ -60,6 +60,7 @@ pub enum Channel {
 ///     device_name: "TST-01".to_string(),
 ///     device_mode: None,
 ///     channel: Channel::Finish,
+///     is_manual: false,
 ///     raw: Some("RAWLINE".to_string()),
 /// };
 /// ```
@@ -75,7 +76,7 @@ pub struct TimingEvent {
     /// Device-local timestamp reported by the timing hardware.
     pub device_time: Timestamp,
 
-    /// Human-readable device name (e.g. serial number, model, or user label).
+    /// Human-readable device name (e.g. serial number, model, or user labels).
     pub device_name: String,
 
     /// Optional device mode or configuration string (if available).
@@ -83,6 +84,9 @@ pub struct TimingEvent {
 
     /// Channel on which the event was recorded.
     pub channel: Channel,
+
+    /// Is the impulse from a manual source?
+    pub is_manual: bool,
 
     /// Raw payload or line received from the device (unparsed), if present.
     pub raw: Option<String>,
@@ -130,6 +134,7 @@ mod tests {
             device_name: "TST-01".to_string(),
             device_mode: Some("MODE-A".to_string()),
             channel: Channel::Finish,
+            is_manual: false,
             raw: Some("RAWLINE".to_string()),
         };
 
